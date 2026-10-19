@@ -1,122 +1,148 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+
+import Cabecalho from "./components/Cabecalho";
+import Secao from "./components/Secao";
+import Resumo from "./components/Resumo";
+import ProjetoCard from "./components/ProjetoCard";
+import Rodape from "./components/Rodape";
+
+const projetos = [
+  {
+    id: 1,
+    titulo: "Sistema de Estoque",
+    descricao: "Controle de produtos, entradas e saídas de mercadorias.",
+    responsavel: "Ana",
+    status: "Concluído",
+    tecnologias: ["React", "Node.js", "PostgreSQL"],
+    destaque: true
+  },
+  {
+    id: 2,
+    titulo: "Loja Virtual",
+    descricao: "Plataforma para apresentar produtos e organizar pedidos.",
+    responsavel: "Lucas",
+    status: "Em desenvolvimento",
+    tecnologias: ["HTML", "CSS", "JavaScript"],
+    destaque: false
+  },
+  {
+    id: 3,
+    titulo: "Agenda Escolar",
+    descricao: "Organização de tarefas, trabalhos e datas de provas.",
+    responsavel: "Mariana",
+    status: "Em desenvolvimento",
+    tecnologias: ["React", "CSS"],
+    destaque: true
+  },
+  {
+    id: 4,
+    titulo: "Biblioteca Digital",
+    descricao: "Cadastro de livros e consulta ao catálogo da biblioteca.",
+    responsavel: "Pedro",
+    status: "Planejamento",
+    tecnologias: ["Java", "MySQL"],
+    destaque: false
+  },
+  {
+    id: 5,
+    titulo: "Portal de Notícias",
+    descricao: "Site para publicação de notícias e novidades da comunidade.",
+    responsavel: "Julia",
+    status: "Concluído",
+    tecnologias: ["HTML", "CSS", "JavaScript"],
+    destaque: false
+  },
+  {
+    id: 6,
+    titulo: "Controle Financeiro",
+    descricao: "Registro de despesas e organização do orçamento mensal.",
+    responsavel: "Gabriel",
+    status: "Planejamento",
+    tecnologias: ["React", "Node.js"],
+    destaque: false
+  }
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const total = projetos.length;
+
+  const concluidos = projetos.filter(
+    (projeto) => projeto.status === "Concluído"
+  ).length;
+
+  const desenvolvimento = projetos.filter(
+    (projeto) => projeto.status === "Em desenvolvimento"
+  ).length;
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app" id="inicio">
+      <Cabecalho />
 
-      <div className="ticks"></div>
+      <main className="conteudo">
+        <section className="boas-vindas">
+          <div>
+            <span className="etiqueta">✦ NOSSO ESPAÇO DE CRIAÇÃO</span>
+            <h1>
+              Ideias que viram
+              <span> projetos.</span>
+            </h1>
+            <p>
+              Acompanhe os projetos da turma, confira o andamento
+              de cada ideia e descubra as tecnologias utilizadas.
+            </p>
+            <a className="botao-projetos" href="#projetos">
+              Explorar projetos <span>↗</span>
+            </a>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <div className="boas-vindas-arte">
+            <div className="arte-circulo">
+              <span> {"</>"} </span>
+            </div>
+            <span className="estrela estrela-1">✦</span>
+            <span className="estrela estrela-2">✧</span>
+            <span className="arte-legenda">CRIAR • TESTAR • EVOLUIR</span>
+          </div>
+        </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        <div id="resumo">
+          <Secao
+            titulo="Visão geral"
+            subtitulo="Um resumo de tudo que estamos construindo."
+          >
+            <Resumo
+              total={total}
+              concluidos={concluidos}
+              desenvolvimento={desenvolvimento}
+            />
+          </Secao>
+        </div>
+
+        <div id="projetos">
+          <Secao
+            titulo="Projetos da turma"
+            subtitulo="Conheça as ideias e acompanhe cada etapa."
+          >
+            <div className="projetos-grid">
+              {projetos.map((projeto) => (
+                <ProjetoCard
+                  key={projeto.id}
+                  titulo={projeto.titulo}
+                  descricao={projeto.descricao}
+                  responsavel={projeto.responsavel}
+                  status={projeto.status}
+                  tecnologias={projeto.tecnologias}
+                  destaque={projeto.destaque}
+                />
+              ))}
+            </div>
+          </Secao>
+        </div>
+      </main>
+
+      <Rodape />
+    </div>
+  );
 }
 
-export default App
+export default App;
